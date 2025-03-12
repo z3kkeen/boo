@@ -60,13 +60,13 @@ export default function SignUp() {
         name,
       },
       {
-        onRequest: (ctx: string) => {
+        onRequest: (ctx) => {
           console.log("loading", ctx);
           setLoading(true);
         },
         onSuccess: (ctx: { data: string }) => {
           console.log("User created: ", ctx.data);
-          router.push("/login");
+          router.push("/dashboard");
         },
         onError: (ctx: { error: { message: string } }) => {
           alert(ctx.error.message);
