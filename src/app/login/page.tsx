@@ -44,6 +44,7 @@ export default function SignUp() {
         onError: (ctx: { error: { message: string } }) => {
           alert(ctx.error.message);
           console.error(error);
+          setLoading(false);
         },
       }
     );
@@ -71,6 +72,7 @@ export default function SignUp() {
         onError: (ctx: { error: { message: string } }) => {
           alert(ctx.error.message);
           console.error(error);
+          setLoading(false);
         },
       }
     );
@@ -122,8 +124,9 @@ export default function SignUp() {
                 />
               </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex gap-4">
               <Button onClick={signUp}>Sign up</Button>
+              {loading && <LoadingSpinner />}
             </CardFooter>
           </Card>
         </TabsContent>

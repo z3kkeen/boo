@@ -5,6 +5,8 @@ import { getUpcomingAppointments } from "@/lib/appointments";
 
 export default async function ServerSidebar() {
   const data = await getUpcomingAppointments();
+  console.log("upcoming: ", data);
+
   return (
     <>
       <AppSidebar appointments={data} />

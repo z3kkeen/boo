@@ -38,6 +38,8 @@ export default function AppSidebar({ appointments }: AppSidebarProps) {
           <SidebarMenu className="px-2">
             {appointments.map((item: Appointment) => {
               const date = new Date(item.date!).toLocaleString();
+              console.log("date: ", date);
+
               return <SidebarMenuItem key={item.id}>{date}</SidebarMenuItem>;
             })}
           </SidebarMenu>

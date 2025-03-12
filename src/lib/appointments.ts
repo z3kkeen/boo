@@ -150,7 +150,7 @@ export async function getUpcomingAppointments() {
     where: {
       isBooked: true,
       bookedById: userId,
-      date: { gt: new Date(now) },
+      date: { gt: now },
     },
     orderBy: { date: "asc" },
   });
