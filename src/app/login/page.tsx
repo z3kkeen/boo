@@ -61,8 +61,7 @@ export default function SignUp() {
         name,
       },
       {
-        onRequest: (ctx) => {
-          console.log("loading", ctx);
+        onRequest: () => {
           setLoading(true);
         },
         onSuccess: (ctx: { data: string }) => {
