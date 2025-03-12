@@ -4,10 +4,17 @@ import AppointmentsTableClient from "./client-appointments";
 import { TimeSlot } from "./columns";
 import { DateParam } from "./dash-main";
 
+interface AppointmentDB {
+  id: number;
+  date: Date | null;
+  isBooked: boolean;
+  bookedById: string | null;
+}
+
 async function getData(date: Date): Promise<TimeSlot[]> {
   const currentDate = new Date(date);
   const appointments = await getAvailableAppointments(currentDate);
-  return appointments.map((appointment) => ({
+  return appointments.map((appointment: AppointmentDB) => ({
     id: appointment.id.toString(),
     time: appointment.date ? new Date(appointment.date) : new Date(),
     status: appointment.isBooked ? "Booked" : "Available",
