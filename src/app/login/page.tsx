@@ -1,6 +1,6 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -23,7 +23,6 @@ export default function SignUp() {
   const [signPassword, setSignPassword] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const signIn = async () => {
     const email = logEmail;
@@ -38,8 +37,10 @@ export default function SignUp() {
         onRequest: () => {
           setLoading(true);
         },
-        onSuccess: () => {
-          router.push("/dashboard");
+        onSuccess: (ctx: { data: string }) => {
+          console.log("User logged in: ", ctx.data);
+          setLoading(false);
+          redirect("/dashboard");
         },
         onError: (ctx: { error: { message: string } }) => {
           alert(ctx.error.message);
@@ -66,7 +67,8 @@ export default function SignUp() {
         },
         onSuccess: (ctx: { data: string }) => {
           console.log("User created: ", ctx.data);
-          router.push("/dashboard");
+          setLoading(false);
+          redirect("/dashboard");
         },
         onError: (ctx: { error: { message: string } }) => {
           alert(ctx.error.message);
